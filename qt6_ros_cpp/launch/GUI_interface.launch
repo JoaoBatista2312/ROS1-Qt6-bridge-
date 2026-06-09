@@ -1,0 +1,4 @@
+<launch>
+    <node name="qt6_ros_cpp_node" pkg="qt6_ros_cpp" type="qt6_ros_cpp_node" output="screen"/>
+    <node name="increment_publisher" pkg="qt6_ros_cpp" type="increment_publisher_cpp" output="screen"/>
+</launch>

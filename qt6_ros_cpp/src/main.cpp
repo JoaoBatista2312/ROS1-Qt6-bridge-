@@ -39,7 +39,6 @@ int main(int argc, char* argv[])
     int result = app.exec();
 
     ros_node.stop();
-    ros_node.wait();
 
     return result;
 }

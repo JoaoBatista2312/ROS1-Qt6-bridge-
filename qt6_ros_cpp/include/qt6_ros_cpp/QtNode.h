@@ -1,23 +1,21 @@
 #pragma once
-#include <QThread>
+#include <QObject>
 #include <QImage>
 #include <ros/ros.h>
 #include <sensor_msgs/CompressedImage.h>
 #include <std_msgs/String.h>
 
-class QtNode : public QThread
+class QtNode : public QObject
 {
     Q_OBJECT
 public:
     explicit QtNode(QObject* parent = nullptr);
+    void start();
     void stop();
 
 signals:
     void updateImage(const QImage& image);
     void updateMessage(const QString& message);
-
-protected:
-    void run() override;
 
 private:
     void compressedImageCallback(const sensor_msgs::CompressedImage::ConstPtr& msg);
@@ -26,5 +24,5 @@ private:
     ros::NodeHandle nh_;
     ros::Subscriber image_sub_;
     ros::Subscriber string_sub_;
-    bool running_;
+    ros::AsyncSpinner spinner_;
 };

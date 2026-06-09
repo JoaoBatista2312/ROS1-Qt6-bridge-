@@ -3,6 +3,7 @@
 #include <QImage>
 #include <QColor>
 #include <QQuickImageProvider>
+#include <QReadWriteLock>
 
 class ImageProvider : public QObject, public QQuickImageProvider
 {
@@ -23,4 +24,5 @@ signals:
 private:
     QImage image_;
     int update_count_;
+    mutable QReadWriteLock lock_;
 };

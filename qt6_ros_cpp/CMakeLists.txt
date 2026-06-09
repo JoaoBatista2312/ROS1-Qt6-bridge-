@@ -12,7 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   roslib
 )
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick Concurrent)
 find_package(OpenCV REQUIRED)
 
 catkin_package(
@@ -38,6 +38,7 @@ target_link_libraries(qt6_ros_cpp_node
   Qt6::Gui
   Qt6::Qml
   Qt6::Quick
+  Qt6::Concurrent
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
 )

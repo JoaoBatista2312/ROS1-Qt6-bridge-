@@ -2,13 +2,16 @@
 #include <std_msgs/String.h>
 #include <string>
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
     ros::init(argc, argv, "increment_publisher");
     ros::NodeHandle nh;
+    ros::NodeHandle pnh("~");
 
-    ros::Publisher pub = nh.advertise<std_msgs::String>("/chatter", 10);
-    ros::Rate rate(80);
+    std::string chatter_topic;
+    pnh.param<std::string>("chatter_topic", chatter_topic, "chatter");
+
+    ros::Publisher pub = nh.advertise<std_msgs::String>(chatter_topic, 10);
+    ros::Rate rate(1);
 
     int count = 0;
     while (ros::ok()) {

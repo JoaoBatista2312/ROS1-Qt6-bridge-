@@ -3,10 +3,12 @@
 import rospy
 from std_msgs.msg import String
 
-def increment_publisher():
-    pub = rospy.Publisher('/chatter', String, queue_size=10)
-    rospy.init_node('increment_publisher', anonymous=True)
-    rate = rospy.Rate(80)  # 50 message per second
+
+def main():
+    rospy.init_node('increment_publisher', anonymous=False)
+    chatter_topic = rospy.get_param('~chatter_topic', 'chatter')
+    pub = rospy.Publisher(chatter_topic, String, queue_size=10)
+    rate = rospy.Rate(1)
     count = 0
 
     while not rospy.is_shutdown():
@@ -16,8 +18,9 @@ def increment_publisher():
         count += 1
         rate.sleep()
 
+
 if __name__ == '__main__':
     try:
-        increment_publisher()
+        main()
     except rospy.ROSInterruptException:
         pass

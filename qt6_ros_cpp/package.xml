@@ -11,6 +11,9 @@
   <build_depend>sensor_msgs</build_depend>
   <build_depend>std_msgs</build_depend>
   <build_depend>roslib</build_depend>
+  <build_depend>libopencv-dev</build_depend>
+  <build_depend>qt6-base-dev</build_depend>
+  <build_depend>qt6-declarative-dev</build_depend>
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>sensor_msgs</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
@@ -19,4 +22,7 @@
   <exec_depend>sensor_msgs</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>roslib</exec_depend>
+  <exec_depend>libopencv-dev</exec_depend>
+  <exec_depend>qt6-base-dev</exec_depend>
+  <exec_depend>qt6-declarative-dev</exec_depend>
 </package>

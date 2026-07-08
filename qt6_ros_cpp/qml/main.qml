@@ -4,29 +4,18 @@ import QtQuick.Controls 6.0
 
 Window {
     visible: true
-    width: 640
-    height: 480
+    width: guiConfig.windowWidth
+    height: guiConfig.windowHeight
     title: appConnection.rosData
-    property int loadCounter: 0
     property double interval: 1
-    property int totalLoadingTime: 0
-    property double startTime: 0
-    property double endTime: 0
     property real lastRenderTime: 0
-
-    Text {
-        id: statusText
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 20
-        font.pixelSize: 20
-        color: "black"
-        z: 1
-    }
 
     Image {
         id: rosImageDisplay
-        anchors.fill: parent
+        x: guiConfig.imageX
+        y: guiConfig.imageY
+        width: guiConfig.imageWidth
+        height: guiConfig.imageHeight
         source: "image://myimageprovider/image?" + imageProvider.imageUpdateCount
         fillMode: Image.PreserveAspectFit
         smooth: false
@@ -44,7 +33,6 @@ Window {
                     let endTime = Date.now();
                     lastRenderTime = endTime - startTime - interval;
                     console.log("Image rendered in: " + lastRenderTime + " ms");
-                    statusText.text = "Last Render Time: " + lastRenderTime.toFixed(2) + " ms";
                 }
             });
 

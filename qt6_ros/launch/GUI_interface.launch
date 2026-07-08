@@ -1,5 +1,35 @@
 <launch>
-    <!-- Launch the nodes and scripts-->
-    <node name="QML_Level" pkg="qt6_ros" type="QML_Level.py"/>
-    <node name="increment_publisher" pkg="qt6_ros" type="increment_publisher.py"/>
+    <arg name="window_width" default="640"/>
+    <arg name="window_height" default="480"/>
+    <arg name="image_x" default="0"/>
+    <arg name="image_y" default="0"/>
+    <arg name="image_width" default="640"/>
+    <arg name="image_height" default="480"/>
+    <arg name="image_topic" default="/camera/color/image_rect_color/compressed"
+         doc="Compressed image topic displayed in the QML window"/>
+    <arg name="counter_example" default="false"
+         doc="Launch the demo increment_publisher and show its counter in the title"/>
+    <arg name="counter_topic" default="chatter"
+         doc="Topic name used by the demo counter (only relevant when counter_example is true)"/>
+    <arg name="qml_file" default=""
+         doc="Path to a custom QML file to load instead of the bundled main.qml"/>
+
+    <node name="QML_Level" pkg="qt6_ros" type="qml_level" output="screen">
+        <param name="window_width" value="$(arg window_width)"/>
+        <param name="window_height" value="$(arg window_height)"/>
+        <param name="image_x" value="$(arg image_x)"/>
+        <param name="image_y" value="$(arg image_y)"/>
+        <param name="image_width" value="$(arg image_width)"/>
+        <param name="image_height" value="$(arg image_height)"/>
+        <param name="image_topic" value="$(arg image_topic)"/>
+        <param name="counter_example" value="$(arg counter_example)"/>
+        <param name="chatter_topic" value="$(arg counter_topic)"/>
+        <param name="qml_file" value="$(arg qml_file)"/>
+    </node>
+
+    <group if="$(arg counter_example)">
+        <node name="increment_publisher" pkg="qt6_ros" type="increment_publisher" output="screen">
+            <param name="chatter_topic" value="$(arg counter_topic)"/>
+        </node>
+    </group>
 </launch>

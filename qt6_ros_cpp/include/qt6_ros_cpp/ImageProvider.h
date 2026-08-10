@@ -5,7 +5,7 @@
 #include <QQuickImageProvider>
 #include <QReadWriteLock>
 
-class ImageProvider : public QObject, public QQuickImageProvider
+class ImageProvider : public QQuickImageProvider
 {
     Q_OBJECT
     Q_PROPERTY(int imageUpdateCount READ imageUpdateCount NOTIFY imageCounterSignal)

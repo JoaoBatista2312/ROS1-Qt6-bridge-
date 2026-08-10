@@ -1,7 +1,7 @@
 #include "qt6_ros_cpp/ImageProvider.h"
 
 ImageProvider::ImageProvider()
-    : QObject(nullptr), QQuickImageProvider(QQuickImageProvider::Image),
+    : QQuickImageProvider(QQuickImageProvider::Image),
       update_count_(0)
 {}
 

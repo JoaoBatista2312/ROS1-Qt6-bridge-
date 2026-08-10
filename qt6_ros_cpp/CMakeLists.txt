@@ -33,6 +33,9 @@ add_library(${PROJECT_NAME}
   src/QtNode.cpp
   src/ImageProvider.cpp
   src/AppConnection.cpp
+  include/${PROJECT_NAME}/QtNode.h
+  include/${PROJECT_NAME}/ImageProvider.h
+  include/${PROJECT_NAME}/AppConnection.h
 )
 
 target_link_libraries(${PROJECT_NAME}
